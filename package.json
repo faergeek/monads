@@ -1,0 +1,44 @@
+{
+  "type": "module",
+  "name": "@faergeek/monads",
+  "version": "0.0.0-semantically-released",
+  "description": "Easy to use monads for JavaScript and TypeScript",
+  "repository": "https://github.com/faergeek/monads",
+  "author": "Sergey Slipchenko <faergeek@gmail.com>",
+  "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.spec.ts"
+  ],
+  "scripts": {
+    "cleanup": "rimraf dist",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint --max-warnings 0 .",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit",
+    "test": "vitest",
+    "build": "tsc"
+  },
+  "packageManager": "pnpm@8.15.1",
+  "devDependencies": {
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
+    "@faergeek/eslint-config": "^5.1.70",
+    "@types/node": "^20.11.16",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
+  }
+}
