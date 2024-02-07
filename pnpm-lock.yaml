@@ -29,6 +29,9 @@ devDependencies:
   semantic-release:
     specifier: ^23.0.2
     version: 23.0.2(typescript@5.3.3)
+  tsdoc-markdown:
+    specifier: ^0.1.0
+    version: 0.1.0(typescript@5.3.3)
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -4543,6 +4546,15 @@ packages:
     engines: {node: '>=16'}
     peerDependencies:
       typescript: '>=4.2.0'
+    dependencies:
+      typescript: 5.3.3
+    dev: true
+
+  /tsdoc-markdown@0.1.0(typescript@5.3.3):
+    resolution: {integrity: sha512-V2zayxM+QPukAoTs0WZhkL2SxX2he9l0PXlmkkB5rQN7mpwuk02zTnOAtKOZiU069QzBK51Jy7lBwQPfZvwglw==}
+    hasBin: true
+    peerDependencies:
+      typescript: ^5
     dependencies:
       typescript: 5.3.3
     dev: true

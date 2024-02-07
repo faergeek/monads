@@ -27,7 +27,8 @@
     "lint": "eslint --max-warnings 0 .",
     "typecheck": "tsc -p tsconfig.node.json --noEmit",
     "test": "vitest",
-    "build": "tsc"
+    "build": "tsc",
+    "tsdoc": "tsdoc --src='src/*'"
   },
   "packageManager": "pnpm@8.15.1",
   "devDependencies": {
@@ -39,6 +40,7 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "semantic-release": "^23.0.2",
+    "tsdoc-markdown": "^0.1.0",
     "typescript": "^5.3.3",
     "vitest": "^1.2.2"
   }
