@@ -82,7 +82,7 @@ export class Maybe<T> {
   /**
    * Return either a boxed value or a value return by `d` if there is none
    */
-  getOr<U>(d: () => T | U) {
+  getOr(d: () => T) {
     return this.match({
       Some: value => value,
       None: d,
@@ -93,14 +93,20 @@ export class Maybe<T> {
    * Return either a boxed value or `null` if there is none
    */
   toNullable() {
-    return this.getOr(() => null);
+    return this.match({
+      None: () => null,
+      Some: value => value,
+    });
   }
 
   /**
    * Return either a boxed value or `undefined` if there is none
    */
   toOptional() {
-    return this.getOr(() => undefined);
+    return this.match({
+      None: () => undefined,
+      Some: value => value,
+    });
   }
 
   /**
