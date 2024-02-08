@@ -15,19 +15,24 @@ export class Result<T, E> {
   }
 
   /**
-   * Represents a failure
+   * Create a box representing failure
    */
   static Err<const E>(err: E) {
     return new Result<never, E>({ isOk: false, err });
   }
 
   /**
-   * Represents a success
+   * Create a box representing success
    */
   static Ok<T>(value: T) {
     return new Result<T, never>({ isOk: true, value });
   }
 
+  /**
+   * Combine record of boxes and return either record with their unboxed values
+   * if all boxes represent a success or the first box representing failure
+   * otherwise
+   */
   static all<T extends Readonly<Record<string, Result<unknown, unknown>>>>(
     xs: T,
   ): Result<
