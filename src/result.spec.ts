@@ -65,11 +65,11 @@ describe('Result', () => {
     const matchedSuccess = Result.Ok(42)
       .getOk()
       .match({
-        None: () => 'nothing',
+        None: () => null,
         Some: value => value,
       });
 
-    expectTypeOf(matchedSuccess).toEqualTypeOf<number | string>();
+    expectTypeOf(matchedSuccess).toEqualTypeOf<number | null>();
     expect(matchedSuccess).toBe(42);
 
     const matchedFailure = Result.Err('Something went wrong')

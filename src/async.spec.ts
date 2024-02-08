@@ -24,6 +24,10 @@ describe('Async', () => {
   });
 
   it('#mapReady', () => {
+    expectTypeOf(Async.Pending.mapReady(() => 42)).toEqualTypeOf<
+      Async<number>
+    >();
+
     const matched = Async.Pending.mapReady(() => 42).match({
       Pending: () => 0,
       Ready: value => value,
@@ -34,6 +38,12 @@ describe('Async', () => {
   });
 
   it('#flatMapReady', () => {
+    expectTypeOf(
+      Async.Ready('anything').flatMapReady(s =>
+        s === 'something' ? Async.Ready(s) : Async.Pending,
+      ),
+    ).toEqualTypeOf<Async<string>>();
+
     const matched = Async.Ready('anything')
       .flatMapReady(s => (s === 'something' ? Async.Ready(s) : Async.Pending))
       .match({

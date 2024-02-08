@@ -56,7 +56,7 @@ export class Async<T> {
    * values.
    * This is used to implement most of the operations
    */
-  match<U, P>(arms: { Pending: () => P; Ready: (value: T) => U }) {
+  match<U>(arms: { Pending: () => U; Ready: (value: T) => U }) {
     return this.#state.isReady ? arms.Ready(this.#state.value) : arms.Pending();
   }
 
