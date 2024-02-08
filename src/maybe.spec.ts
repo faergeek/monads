@@ -58,17 +58,12 @@ describe('Maybe', () => {
     expectTypeOf(someValue).toEqualTypeOf<number>();
     expect(someValue).toBe(42);
 
-    const someValueWithDifferentFallbackType = Maybe.Some(42).getOr(
-      () => 'nothing',
+    const someObject = Maybe.Some<{ foo?: 'bar' }>({ foo: 'bar' }).getOr(
+      () => ({}),
     );
-    expectTypeOf(someValueWithDifferentFallbackType).toEqualTypeOf<
-      number | string
-    >();
-    expect(someValueWithDifferentFallbackType).toBe(42);
 
-    const noneValue = Maybe.None.getOr(() => 42);
-    expectTypeOf(noneValue).toEqualTypeOf<number>();
-    expect(noneValue).toBe(42);
+    expectTypeOf(someObject).toEqualTypeOf<{ foo?: 'bar' }>();
+    expect(someObject).toStrictEqual({ foo: 'bar' });
   });
 
   it('#toNullable', () => {
