@@ -24,6 +24,8 @@ describe('Maybe', () => {
   });
 
   it('#mapSome', () => {
+    expectTypeOf(Maybe.None.mapSome(() => 42)).toEqualTypeOf<Maybe<number>>();
+
     const matched = Maybe.None.mapSome(() => 42).match({
       None: () => 0,
       Some: value => value,
@@ -34,6 +36,12 @@ describe('Maybe', () => {
   });
 
   it('#flatMapSome', () => {
+    expectTypeOf(
+      Maybe.None.flatMapSome(s =>
+        s === 'something' ? Maybe.None : Maybe.Some('asdfasdf'),
+      ),
+    ).toEqualTypeOf<Maybe<string>>();
+
     const matched = Maybe.Some('anything')
       .flatMapSome(s => (s === 'something' ? Maybe.Some(s) : Maybe.None))
       .match({

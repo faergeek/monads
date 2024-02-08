@@ -17,6 +17,7 @@
   "sideEffects": false,
   "files": [
     "dist",
+    "!dist/**/*.spec.*",
     "src",
     "!src/**/*.spec.ts"
   ],
@@ -25,7 +26,6 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint --max-warnings 0 .",
-    "typecheck": "tsc -p tsconfig.node.json --noEmit",
     "test": "vitest",
     "build": "tsc"
   },

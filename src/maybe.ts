@@ -47,7 +47,7 @@ export class Maybe<T> {
    * value.
    * This is used to implement most of the operations
    */
-  match<U, N>(arms: { None: () => N; Some: (value: T) => U }) {
+  match<U>(arms: { None: () => U; Some: (value: T) => U }) {
     return this.#state.isSome ? arms.Some(this.#state.value) : arms.None();
   }
 
