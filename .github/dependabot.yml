@@ -5,6 +5,10 @@ updates:
     versioning-strategy: increase-if-necessary
     schedule:
       interval: daily
+    commit-message:
+      include: scope
+      prefix: fix
+      prefix-development: chore
   - package-ecosystem: github-actions
     directory: /
     schedule:
