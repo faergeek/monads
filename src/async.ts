@@ -1,4 +1,4 @@
-import { Maybe } from './maybe';
+import { Maybe } from './maybe.js';
 
 /**
  * An abstract box representing asynchronous value state.
