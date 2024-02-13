@@ -1,6 +1,6 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
 
-import { Maybe } from './maybe';
+import { Maybe } from './maybe.js';
 
 describe('Maybe', () => {
   it('.None', () => {

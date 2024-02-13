@@ -1,6 +1,6 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
 
-import { Result } from './result';
+import { Result } from './result.js';
 
 describe('Result', () => {
   it('.Err', () => {

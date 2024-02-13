@@ -1,6 +1,6 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
 
-import { Async } from './async';
+import { Async } from './async.js';
 
 describe('Async', () => {
   it('.Pending', () => {
