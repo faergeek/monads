@@ -68,6 +68,24 @@ describe('Result', () => {
     );
   });
 
+  it('#flatMapErr', () => {
+    const matched1 = Result.Err<'input-error' | 'critical-error'>(
+      'input-error',
+    ).flatMapErr(err =>
+      err === 'input-error' ? Result.Ok(42) : Result.Err(err),
+    );
+
+    expectTypeOf(matched1).toEqualTypeOf<Result<number, 'critical-error'>>();
+    expect(matched1.match({ Err: err => err, Ok: value => value })).toBe(42);
+
+    const matched2 = Result.Ok('42').flatMapErr(err =>
+      err === 'input-error' ? Result.Ok(42) : Result.Err('error'),
+    );
+
+    expectTypeOf(matched2).toEqualTypeOf<Result<number | string, 'error'>>();
+    expect(matched2.match({ Err: err => err, Ok: value => value })).toBe('42');
+  });
+
   it('#getOk', () => {
     const matchedSuccess = Result.Ok(42)
       .getOk()
