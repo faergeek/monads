@@ -105,6 +105,21 @@ export class Result<T, E> {
   }
 
   /**
+   * Apply an arbitrary transformation to a failure value inside the box and
+   * return a new box with the result of that transformation.
+   * As opposed to `mapErr`, `f` is required to return a new box, not just a
+   * value.
+   * This can be useful if you want to turn `Result.Err` into `Result.Ok`
+   * depending on it's value
+   */
+  flatMapErr<U, F>(f: (err: E) => Result<U, F>) {
+    return this.match<Result<T | U, F>>({
+      Err: err => f(err),
+      Ok: Result.Ok,
+    });
+  }
+
+  /**
    * Turn this `Result` into a `Maybe` of a success value.
    */
   getOk() {

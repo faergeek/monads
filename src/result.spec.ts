@@ -48,17 +48,42 @@ describe('Result', () => {
   });
 
   it('#flatMapOk', () => {
-    const matched = Result.Ok('anything')
-      .flatMapOk(s =>
-        s === 'something' ? Result.Ok(s) : Result.Err('Something failed'),
-      )
-      .match({
-        Err: err => err,
-        Ok: value => value,
-      });
+    const matched1 = Result.Ok('anything').flatMapOk(s =>
+      s === 'anything' ? Result.Ok(42) : Result.Err('No'),
+    );
 
-    expectTypeOf(matched).toEqualTypeOf<string>();
-    expect(matched).toBe('Something failed');
+    expectTypeOf(matched1).toEqualTypeOf<Result<number, 'No'>>();
+    expect(matched1.match({ Err: err => err, Ok: value => value })).toBe(42);
+
+    const matched2 = Result.Err('input-error').flatMapOk(value =>
+      value === 'anything' ? Result.Ok(42) : Result.Err('something'),
+    );
+
+    expectTypeOf(matched2).toEqualTypeOf<
+      Result<number, 'input-error' | 'something'>
+    >();
+
+    expect(matched2.match({ Err: err => err, Ok: value => value })).toBe(
+      'input-error',
+    );
+  });
+
+  it('#flatMapErr', () => {
+    const matched1 = Result.Err<'input-error' | 'critical-error'>(
+      'input-error',
+    ).flatMapErr(err =>
+      err === 'input-error' ? Result.Ok(42) : Result.Err(err),
+    );
+
+    expectTypeOf(matched1).toEqualTypeOf<Result<number, 'critical-error'>>();
+    expect(matched1.match({ Err: err => err, Ok: value => value })).toBe(42);
+
+    const matched2 = Result.Ok('42').flatMapErr(err =>
+      err === 'input-error' ? Result.Ok(42) : Result.Err('error'),
+    );
+
+    expectTypeOf(matched2).toEqualTypeOf<Result<number | string, 'error'>>();
+    expect(matched2.match({ Err: err => err, Ok: value => value })).toBe('42');
   });
 
   it('#getOk', () => {
