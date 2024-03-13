@@ -11,10 +11,10 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
+      - uses: asdf-vm/actions/install@v3
       - uses: pnpm/action-setup@v3
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
-          node-version-file: .tool-versions
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec commitlint --verbose --from=remotes/origin/$GITHUB_BASE_REF
