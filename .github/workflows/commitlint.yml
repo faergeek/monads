@@ -15,6 +15,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
-          node-version-file: .nvmrc
+          node-version-file: .tool-versions
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec commitlint --verbose --from=remotes/origin/$GITHUB_BASE_REF
