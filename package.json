@@ -25,7 +25,7 @@
     "cleanup": "rimraf dist",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "eslint --max-warnings 0 .",
+    "lint": "eslint --max-warnings 0",
     "test": "vitest",
     "build": "tsc"
   },
