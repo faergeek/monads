@@ -73,7 +73,7 @@ describe('Maybe', () => {
 
     const noneValue = Maybe.None.toNullable();
     expectTypeOf(noneValue).toEqualTypeOf<null>();
-    expect(noneValue).toBe(null);
+    expect(noneValue).toBeNull();
   });
 
   it('#toOptional', () => {
@@ -83,7 +83,7 @@ describe('Maybe', () => {
 
     const noneValue = Maybe.None.toOptional();
     expectTypeOf(noneValue).toEqualTypeOf<undefined>();
-    expect(noneValue).toBe(undefined);
+    expect(noneValue).toBeUndefined();
   });
 
   it('#assertSome', () => {
@@ -115,6 +115,6 @@ describe('Maybe', () => {
     }).toNullable();
 
     expectTypeOf(notAll).toEqualTypeOf<{ 42: number; none: never } | null>();
-    expect(notAll).toBe(null);
+    expect(notAll).toBeNull();
   });
 });

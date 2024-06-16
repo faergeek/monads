@@ -164,6 +164,6 @@ describe('Result', () => {
       .toNullable();
 
     expectTypeOf(notAll).toEqualTypeOf<{ 42: number; none: never } | null>();
-    expect(notAll).toBe(null);
+    expect(notAll).toBeNull();
   });
 });

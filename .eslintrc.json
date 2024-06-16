@@ -9,6 +9,10 @@
     {
       "files": "**/*.ts?(x)",
       "extends": "@faergeek/eslint-config/typescript"
+    },
+    {
+      "files": "**/*.spec.ts?(x)",
+      "extends": "@faergeek/eslint-config/vitest"
     }
   ]
 }
