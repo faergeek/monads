@@ -10,7 +10,7 @@ describe('Async', () => {
     });
 
     expectTypeOf(matched).toEqualTypeOf<undefined>();
-    expect(matched).toBe(undefined);
+    expect(matched).toBeUndefined();
   });
 
   it('.Ready', () => {
@@ -84,6 +84,6 @@ describe('Async', () => {
       .toNullable();
 
     expectTypeOf(notAll).toEqualTypeOf<{ 42: number; none: never } | null>();
-    expect(notAll).toBe(null);
+    expect(notAll).toBeNull();
   });
 });
