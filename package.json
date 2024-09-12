@@ -27,6 +27,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint --max-warnings 0",
     "test": "vitest",
+    "benchmark": "vitest bench",
     "build": "tsc"
   },
   "packageManager": "pnpm@10.13.1",

@@ -1,4 +1,4 @@
-import { describe, expect, expectTypeOf, it } from 'vitest';
+import { describe, expect, expectTypeOf, it, vi } from 'vitest';
 
 import { Result } from './result.js';
 
@@ -21,6 +21,52 @@ describe('Result', () => {
 
     expectTypeOf(matched).toEqualTypeOf<number>();
     expect(matched).toBe(42);
+  });
+
+  it('#[Symbol.iterator]', () => {
+    for (const _ of Result.Ok(42)) expect.fail();
+
+    expect(() => {
+      for (const _ of Result.Err('foo'));
+    }).toThrowError('Consumed already');
+  });
+
+  it('.do', () => {
+    const getNum = vi.fn<() => Result<number, 'no-number'>>(() =>
+      Result.Err('no-number'),
+    );
+    getNum.mockImplementationOnce(() => Result.Ok(42));
+
+    const getStr = vi.fn<() => Result<string, 'no-string'>>(() =>
+      Result.Err('no-string'),
+    );
+    getStr.mockImplementationOnce(() => Result.Ok('foo'));
+
+    const ok = Result.do(function* f() {
+      const n = yield* getNum();
+      const s = yield* getStr();
+
+      return Result.Ok(`${s}: ${n}`);
+    });
+
+    expectTypeOf(ok).toEqualTypeOf<Result<string, 'no-number' | 'no-string'>>();
+    expect(ok.getOk().toNullable()).toBe('foo: 42');
+
+    const final = vi.fn();
+
+    const err = Result.do(function* f() {
+      try {
+        const n = yield* getNum();
+
+        return Result.Ok(n);
+      } finally {
+        final();
+      }
+    });
+
+    expect(final).toHaveBeenCalledOnce();
+    expectTypeOf(err).toEqualTypeOf<Result<number, 'no-number'>>();
+    expect(err.getOk().toNullable()).toBeNull();
   });
 
   it('#mapOk', () => {
