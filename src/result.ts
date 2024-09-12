@@ -5,7 +5,7 @@ import { Maybe } from './maybe.js';
  * Provides various ways to perform operations on either of those state,
  * without explicitly checking for it.
  */
-export class Result<T, E> {
+export class Result<T = never, E = never> {
   #state;
 
   private constructor(
@@ -18,14 +18,30 @@ export class Result<T, E> {
    * Create a box representing failure
    */
   static Err<const E>(err: E) {
-    return new Result<never, E>({ isOk: false, err });
+    return new Result({ isOk: false, err });
   }
 
   /**
    * Create a box representing success
    */
   static Ok<T>(value: T) {
-    return new Result<T, never>({ isOk: true, value });
+    return new Result({ isOk: true, value });
+  }
+
+  static do<T, E>(f: () => Generator<E, Result<T, E>, never>) {
+    const gen = f();
+
+    let result = gen.next();
+    while (!result.done) result = gen.return(Result.Err(result.value));
+
+    return result.value;
+  }
+
+  *[Symbol.iterator](): Generator<E, T, void> {
+    if (this.#state.isOk) return this.#state.value;
+
+    yield this.#state.err;
+    throw new Error('Consumed already');
   }
 
   /**
