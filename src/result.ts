@@ -37,6 +37,19 @@ export class Result<T = never, E = never> {
     return result.value;
   }
 
+  static doWithArgs<T, E, A extends unknown[]>(
+    f: (...args: A) => Generator<E, Result<T, E>, never>,
+  ) {
+    return (...args: A) => {
+      const gen = f(...args);
+
+      let result = gen.next();
+      while (!result.done) result = gen.return(Result.Err(result.value));
+
+      return result.value;
+    };
+  }
+
   *[Symbol.iterator](): Generator<E, T, void> {
     if (this.#state.isOk) return this.#state.value;
 

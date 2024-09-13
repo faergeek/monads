@@ -47,6 +47,14 @@ function handleResultWithGenerator(f: () => Result<number, 'failed'>) {
   });
 }
 
+const handleResultWithGeneratorWithArgs = Result.doWithArgs(function* fn(
+  f: () => Result<number, 'failed'>,
+) {
+  const n = yield* f();
+
+  return Result.Ok(n * 2);
+});
+
 describe('error handling', () => {
   bench(
     'try/catch (success)',
@@ -92,6 +100,22 @@ describe('error handling', () => {
     'result with generator (failure)',
     () => {
       handleResultWithGenerator(returningResult(returnOrFail(true)));
+    },
+    BENCH_OPTIONS,
+  );
+
+  bench(
+    'result with generator with args (success)',
+    () => {
+      handleResultWithGeneratorWithArgs(returningResult(returnOrFail(false)));
+    },
+    BENCH_OPTIONS,
+  );
+
+  bench(
+    'result with generator with args (failure)',
+    () => {
+      handleResultWithGeneratorWithArgs(returningResult(returnOrFail(true)));
     },
     BENCH_OPTIONS,
   );
