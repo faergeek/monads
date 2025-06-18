@@ -16,7 +16,7 @@ importers:
         version: 19.8.1
       '@faergeek/eslint-config':
         specifier: ^7.0.4
-        version: 7.0.47(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/node@22.15.32)(jiti@2.4.2))
+        version: 7.0.48(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/node@22.15.32)(jiti@2.4.2))
       '@types/node':
         specifier: ^22.0.0
         version: 22.15.32
@@ -314,8 +314,8 @@ packages:
     resolution: {integrity: sha512-4SaFZCNfJqvk/kenHpI8xvN42DMaoycy4PzKc5otHxRswww1kAt82OlBuwRVLofCACCTZEcla2Ydxv8scMXaTg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@faergeek/eslint-config@7.0.47':
-    resolution: {integrity: sha512-+W4hzHhXr6o30rNfIoTyCzIFcKId2Con7syBo+2oM5OcVJ7YMlIgf7XZeD/VHknt1xHdq/cSPv2s3F/R2IocsQ==}
+  '@faergeek/eslint-config@7.0.48':
+    resolution: {integrity: sha512-+II/t1vWwKOPW54qZCl0t2ugEjV7w5qpi1wraO4gbbcGisWbIfSFogaE3FZfMGlA1ZagZr0apFerg6Ihe+syAA==}
     peerDependencies:
       eslint: ^9.0.0
 
@@ -3010,7 +3010,7 @@ snapshots:
       '@eslint/core': 0.15.0
       levn: 0.4.1
 
-  '@faergeek/eslint-config@7.0.47(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/node@22.15.32)(jiti@2.4.2))':
+  '@faergeek/eslint-config@7.0.48(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/node@22.15.32)(jiti@2.4.2))':
     dependencies:
       '@vitest/eslint-plugin': 1.2.7(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/node@22.15.32)(jiti@2.4.2))
       eslint: 9.29.0(jiti@2.4.2)
