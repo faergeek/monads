@@ -1,11 +1,9 @@
 import { base, typescript, vitest } from '@faergeek/eslint-config';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-export default [
-  { ignores: ['dist/'] },
-  ...base,
-  ...typescript,
-  ...vitest.map(config => ({
-    ...config,
-    files: ['**/*.spec.*'],
-  })),
-];
+export default defineConfig([
+  globalIgnores(['dist/']),
+  base,
+  typescript,
+  { files: ['**/*.spec.*'], extends: [vitest] },
+]);
