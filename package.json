@@ -29,7 +29,7 @@
     "test": "vitest",
     "build": "tsc"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild"
