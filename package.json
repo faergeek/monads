@@ -38,7 +38,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
-    "@faergeek/eslint-config": "^7.0.4",
+    "@faergeek/eslint-config": "^8.0.0",
     "@types/node": "^22.0.0",
     "eslint": "^9.19.0",
     "prettier": "^3.2.5",
