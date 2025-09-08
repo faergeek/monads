@@ -30,11 +30,6 @@
     "build": "tsc"
   },
   "packageManager": "pnpm@10.15.1",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
