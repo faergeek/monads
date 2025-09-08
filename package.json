@@ -3,7 +3,10 @@
   "name": "@faergeek/monads",
   "version": "0.0.0-semantically-released",
   "description": "Easy to use monads for JavaScript and TypeScript",
-  "repository": "https://github.com/faergeek/monads",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faergeek/monads.git"
+  },
   "author": "Sergei Slipchenko <faergeek@gmail.com>",
   "license": "MIT",
   "exports": {
