@@ -1,0 +1,33 @@
+name: pull-request
+on:
+  - pull_request
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+permissions:
+  contents: read
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GH_PAT }}
+      - uses: asdf-vm/actions/install@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec commitlint --verbose --from="remotes/origin/$GITHUB_BASE_REF"
+      - name: commit
+        run: |
+          version=$(pnpm exec git-cliff --bumped-version)
+
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          if pnpm version -m "chore: $version" "$version"; then
+            git push origin
+          fi

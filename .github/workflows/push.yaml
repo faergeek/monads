@@ -1,0 +1,40 @@
+name: push
+on:
+  push:
+    branches:
+      - '**'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: asdf-vm/actions/install@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run format:check
+      - run: pnpm run lint
+      - run: pnpm run build
+      - run: pnpm test
+  publish-to-latest:
+    if: github.ref_name == github.event.repository.default_branch
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+      - name: push tag
+        run: |
+          if git tag "v$(jq -r '.version' package.json)" 2>/dev/null; then
+            git push origin --tags
+          else
+            echo "No relevant changes to publish"
+          fi

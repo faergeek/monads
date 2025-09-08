@@ -26,7 +26,9 @@
     "format:check": "prettier --check .",
     "lint": "eslint --max-warnings 0",
     "test": "vitest",
-    "build": "tsc"
+    "build": "tsc",
+    "generate-changelog": "git-cliff --bump -o CHANGELOG.md && prettier --write CHANGELOG.md",
+    "version": "pnpm run generate-changelog && git add CHANGELOG.md"
   },
   "packageManager": "pnpm@10.15.1",
   "devDependencies": {
@@ -35,9 +37,9 @@
     "@faergeek/eslint-config": "^8.0.0",
     "@types/node": "^22.0.0",
     "eslint": "^9.19.0",
+    "git-cliff": "^2.10.0",
     "prettier": "^3.2.5",
     "rimraf": "^6.0.0",
-    "semantic-release": "^24.0.0",
     "typescript": "^5.3.3",
     "vitest": "^3.0.0"
   }
