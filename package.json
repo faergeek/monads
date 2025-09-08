@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@faergeek/monads",
-  "version": "0.0.0-semantically-released",
+  "version": "1.1.1",
   "description": "Easy to use monads for JavaScript and TypeScript",
   "repository": {
     "type": "git",
