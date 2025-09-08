@@ -4,7 +4,7 @@
   "version": "0.0.0-semantically-released",
   "description": "Easy to use monads for JavaScript and TypeScript",
   "repository": "https://github.com/faergeek/monads",
-  "author": "Sergey Slipchenko <faergeek@gmail.com>",
+  "author": "Sergei Slipchenko <faergeek@gmail.com>",
   "license": "MIT",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
