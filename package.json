@@ -1,18 +1,17 @@
 {
   "type": "module",
   "name": "@faergeek/monads",
-  "version": "0.0.0-semantically-released",
+  "version": "1.1.1",
   "description": "Easy to use monads for JavaScript and TypeScript",
-  "repository": "https://github.com/faergeek/monads",
-  "author": "Sergey Slipchenko <faergeek@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faergeek/monads.git"
+  },
+  "author": "Sergei Slipchenko <faergeek@gmail.com>",
   "license": "MIT",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
+    "types": "./dist/index.d.ts",
+    "default": "./dist/index.js"
   },
   "sideEffects": false,
   "files": [
@@ -27,23 +26,20 @@
     "format:check": "prettier --check .",
     "lint": "eslint --max-warnings 0",
     "test": "vitest",
-    "build": "tsc"
+    "build": "tsc",
+    "generate-changelog": "git-cliff --bump -o CHANGELOG.md && prettier --write CHANGELOG.md",
+    "version": "pnpm run generate-changelog && git add CHANGELOG.md"
   },
   "packageManager": "pnpm@10.15.1",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
     "@faergeek/eslint-config": "^8.0.0",
     "@types/node": "^22.0.0",
     "eslint": "^9.19.0",
+    "git-cliff": "^2.10.0",
     "prettier": "^3.2.5",
     "rimraf": "^6.0.0",
-    "semantic-release": "^24.0.0",
     "typescript": "^5.3.3",
     "vitest": "^3.0.0"
   }
