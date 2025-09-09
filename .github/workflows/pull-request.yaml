@@ -17,8 +17,6 @@ jobs:
       - uses: asdf-vm/actions/install@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v5
-        with:
-          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec commitlint --verbose --from="remotes/origin/$GITHUB_BASE_REF"
       - name: commit
