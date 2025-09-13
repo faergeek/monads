@@ -30,7 +30,7 @@
     "generate-changelog": "git-cliff --bump -o CHANGELOG.md && prettier --write CHANGELOG.md",
     "version": "pnpm run generate-changelog && git add CHANGELOG.md"
   },
-  "packageManager": "pnpm@10.16.0",
+  "packageManager": "pnpm@10.16.1",
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
