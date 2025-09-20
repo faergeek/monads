@@ -26,9 +26,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint --max-warnings 0",
     "test": "vitest",
-    "build": "tsc",
-    "generate-changelog": "git-cliff --bump -o CHANGELOG.md && prettier --write CHANGELOG.md",
-    "version": "pnpm run generate-changelog && git add CHANGELOG.md"
+    "build": "tsc"
   },
   "packageManager": "pnpm@10.17.0",
   "devDependencies": {
