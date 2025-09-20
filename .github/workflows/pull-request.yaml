@@ -6,7 +6,7 @@ concurrency:
 permissions:
   contents: read
 jobs:
-  bump-version:
+  update-changelog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/create-github-app-token@v2
@@ -24,13 +24,15 @@ jobs:
       - uses: actions/setup-node@v5
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec commitlint --verbose --from="remotes/origin/$GITHUB_BASE_REF"
-      - name: commit
+      - name: update changelog
         run: |
-          version=$(pnpm exec git-cliff --bumped-version)
+          pnpm exec git-cliff -o
+          pnpm exec prettier --write CHANGELOG.md
+          git add CHANGELOG.md
 
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
 
-          if pnpm version -m "chore: $version" "$version"; then
+          if git commit -m 'chore: update changelog'; then
             git push origin
           fi

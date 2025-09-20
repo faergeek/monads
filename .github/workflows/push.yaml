@@ -34,10 +34,24 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
-      - name: push tag
+      - uses: asdf-vm/actions/install@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+      - run: pnpm install --frozen-lockfile
+      - name: bump version
         run: |
-          if git tag "v$(jq -r '.version' package.json)" 2>/dev/null; then
+          version=$(pnpm exec git-cliff --bumped-version)
+
+          if pnpm version --no-git-tag-version "$version"; then
+            pnpm exec git-cliff --bump -o
+            pnpm exec prettier --write CHANGELOG.md
+            git add CHANGELOG.md package.json
+
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git commit -m "chore: $version"
+            git push origin
+
+            git tag "$version"
             git push origin --tags
-          else
-            echo "No relevant changes to publish"
           fi
