@@ -6,25 +6,27 @@ All notable changes to this project will be documented in this file. See [conven
 """
 
 body = """
-{% if version -%}
-## {{ version | trim_start_matches(pat="v") }} ({{ timestamp | date(format="%Y-%m-%d") }})
-{% else -%}
-## Unreleased
-{% endif -%}
+{% if version %}
+  ## {{ version | trim_start_matches(pat="v") }} ({{ timestamp | date(format="%Y-%m-%d") }})
+{%- else %}
+  ## Unreleased
+{%- endif %}
+
 {%- if commits | filter(attribute="breaking", value=true) | length != 0 %}
-### BREAKING CHANGES
-{% for commit in commits | filter(attribute="breaking", value=true) %}
-{% for footer in commit.footers | filter(attribute="breaking", value=true) %}
-- {{ footer.value }}
-{%- endfor -%}
-{%- endfor -%}
-{%- endif -%}
+
+  ### BREAKING CHANGES
+  {% for commit in commits | filter(attribute="breaking", value=true) %}
+    {%- for footer in commit.footers | filter(attribute="breaking", value=true) %}
+      - {{ footer.value }}
+    {%- endfor %}
+  {%- endfor %}
+{%- endif %}
 {% for group, commits in commits | group_by(attribute="group") %}
-### {{ group }}
-{% for commit in commits -%}
-- {{ commit.message }}
+  ### {{ group }}
+  {% for commit in commits %}
+    - {{ commit.message }}
+  {%- endfor %}
 {% endfor %}
-{%- endfor -%}
 """
 
 [git]
