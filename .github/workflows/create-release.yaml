@@ -20,6 +20,8 @@ jobs:
       - uses: asdf-vm/actions/install@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
+        with:
+          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec git-cliff --current --strip all -o /tmp/release-notes.md
       - uses: softprops/action-gh-release@v2
