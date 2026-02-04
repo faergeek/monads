@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "outDir": "node_modules/.cache/tsc/",
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "extends": "./tsconfig.base.json",
+  "include": ["**/*.spec.ts"]
+}

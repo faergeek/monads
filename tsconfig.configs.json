@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "outDir": "node_modules/.cache/tsc/",
+    "rootDir": "."
+  },
+  "extends": "./tsconfig.base.json",
+  "include": ["eslint.config.js"]
+}
