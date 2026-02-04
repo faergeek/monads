@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "lib": ["esnext"],
+    "outDir": "dist",
+    "rootDir": "src",
+    "tsBuildInfoFile": "node_modules/.cache/tsc/tsconfig.dist.tsbuildinfo"
+  },
+  "extends": "./tsconfig.base.json",
+  "include": ["src"],
+  "exclude": ["**/*.spec.ts"]
+}
