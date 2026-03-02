@@ -3,5 +3,6 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
   globalIgnores(['dist/']),
-  { extends: [base, typescript, vitest] },
+  { extends: [base, typescript] },
+  { files: ['**/*.spec.ts'], extends: [vitest] },
 ]);
