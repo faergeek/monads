@@ -1,6 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[conventional commits](https://www.conventionalcommits.org/) for commit
+guidelines.
 
 ## 1.1.1 (2025-09-08)
 

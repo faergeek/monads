@@ -17,9 +17,9 @@ serve as a more complete API documentation:
 - [Async](./src/async.ts)
 
   An abstract box representing asynchronous value state. Very similar to
-  `Maybe`, but has less operations. It exists to make sure that
-  presence/absence of a value and pending/ready state are easy to tell apart.
-  Very useful to convey loading state through any value transformations.
+  `Maybe`, but has less operations. It exists to make sure that presence/absence
+  of a value and pending/ready state are easy to tell apart. Very useful to
+  convey loading state through any value transformations.
 
   A box with a value ready to be used can be created with
   `Async.Ready(<value>)`. `Async.Pending` represents a pending state meaning
@@ -31,8 +31,8 @@ serve as a more complete API documentation:
 
   An abstract box representing success or failure.
 
-  A box representing success can be created with `Result.Ok(<value>)`.
-  A box representing failure can be created with `Result.Err(<error>)`.
+  A box representing success can be created with `Result.Ok(<value>)`. A box
+  representing failure can be created with `Result.Err(<error>)`.
 
   Read the comments in source file linked above for details.
 
@@ -55,9 +55,9 @@ const halfTheAnswer = data
 
 Then apply transformations with `map*` or `flatMap*` functions.
 
-Here we simply multiply the value by 2. But the same approach can be used to extract
-only some pieces of response data, transform them and pass to child components,
-all without loosing request state attached to it.
+Here we simply multiply the value by 2. But the same approach can be used to
+extract only some pieces of response data, transform them and pass to child
+components, all without loosing request state attached to it.
 
 ```javascript
 const theAnswer = halfTheAnswer.mapReady(
