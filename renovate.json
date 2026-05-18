@@ -4,6 +4,5 @@
     ":semanticCommits",
     "helpers:pinGitHubActionDigests",
     "security:minimumReleaseAgeNpm"
-  ],
-  "lockFileMaintenance": { "enabled": true }
+  ]
 }
