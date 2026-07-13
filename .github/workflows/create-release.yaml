@@ -23,7 +23,7 @@ jobs:
           run_install: true
       - uses: asdf-vm/actions/install@b7bcd026f18772e44fe1026d729e1611cc435d47 # v4
       - run: pnpm exec git-cliff --current --strip all -o /tmp/release-notes.md
-      - uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3
+      - uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
         with:
           body_path: /tmp/release-notes.md
           token: ${{ steps.app-token.outputs.token }}
